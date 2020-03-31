@@ -16,10 +16,11 @@ m <- 10
 
 amplitudes <- function(n) {
 
-if(n == 0) { return( U2 * tau/T ) }
+if(n == 0) { return( 2*U2 * tau/T ) }
 
- p <- abs(    U2 * tau/T * sin(pi * n * tau/T) / (n * pi * tau/T))
+ p <- abs(    2*U2 * tau/T * sin(pi * n * tau/T) / (n * pi * tau/T))
 
+ print(p)
 
 }
 
@@ -43,7 +44,7 @@ xlimits <- c(-10, 10)
 xbreaks <- seq(-10, 10, 2)
 #xlabels <- c(-5,-4,-3,-2,-1,0,"1", "2 [..1/(T0/2)]", "3", "4", "5")
 xlabels <- xbreaks
-ylimits <- c(-0.01, U2 * tau/T * 1.382)
+ylimits <- c(-0.01, 2*U2 * tau/T * 1.382)
 
 xlabel <- "f / f0"
 ylabel <- bquote("U"[2]~"(f)")
