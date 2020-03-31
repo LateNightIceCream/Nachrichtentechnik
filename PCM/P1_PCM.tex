@@ -52,6 +52,14 @@ b_n = \frac{2}{T} \cdot \int_T{x(t) \cdot \sin{n \omega_0 t} \dif t}
   \caption{Teil des Spektrums der Rechteckimpulsfolge bei $T=1/8\,\si{\milli\second}$}
 \end{figure}
 
+Der Gleichanteil $a_0$ ist
+\begin{gather*}
+  \frac{a_0}{2} = \frac{1}{T} \cdot \int_{-T/2}^{T/2}{u_0(t) \dif t}\\
+  = \frac{U_0}{T} \cdot \int_{-\tau/2}^{\tau/2}{ 1 \dif t} = \frac{U_0}{T} \cdot
+  \left[ \frac{\tau}{2} - (- \frac{\tau}{2}) \right] 
+\end{gather*}
+\eqbox{a_0 = 2 \cdot  U_0 \cdot \frac{\tau}{T} }{0.618\textwidth}
+
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{1_1/Si_10kHz}
   \caption{Teil des Spektrums der Rechteckimpulsfolge bei $T=1/10\,\si{\milli\second}$}
@@ -60,7 +68,7 @@ b_n = \frac{2}{T} \cdot \int_T{x(t) \cdot \sin{n \omega_0 t} \dif t}
 % 1.2
 
 \subsection{}
-Für die fehlerlose Signalabtastung muss die Abtastfrequenz $f_A$ mindestens
+Für die fehlerfreie Signalabtastung muss die Abtastfrequenz $f_A$ mindestens
 doppelt so groß sein wie die maximal im Signal auftretende Frequenz $f_{SMax}$ (Nyquist-Theorem).
 \[
   f_A \geq 2\cdot f_{SMax}
@@ -109,7 +117,11 @@ die Linearität des Faltungsintegrals ausnutzen
 
 Es ergibt sich also die Summe der Faltungen der Funktion $U_1(f)$ mit den einzelnen
 Diracimpulsen des Kammes, also im Falle des Frequenzbereiches die periodische Verschiebung
-des Spektrums $U_1(f)$ um die Werte $k \cdot 1/T_a$.
+des Spektrums $U_1(f)$ um die Werte $k \cdot 1/T_a$ sowie die Skalierung mit
+$1/T_a$.\\
+
+(Das Spektrum des Eingangssignals $u_1(t) = U_0 \cdot \cos{(2 \pi \cdot
+  f_1 \cdot t)}$ stellt zwei Spektrallinien bei $-f_1$ und $+f_1$ dar)
 
 
 
@@ -124,9 +136,31 @@ des Spektrums $U_1(f)$ um die Werte $k \cdot 1/T_a$.
   \caption{Zwei Perioden des Eingangssignals abgetastet mit $f_a=10\,\si{\kilo\hertz}$}
 \end{figure}
 
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{1_2/1_2_dirac_convolution_FB_8kHz}
+  \caption{Ausschnitt des Spektrums bei Abtastung mit $f_a = 8 \, \si{\kilo\hertz}$}
+\end{figure}
 
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{1_2/1_2_dirac_convolution_FB_10kHz}
+  \caption{Ausschnitt des Spektrums bei Abtastung mit $f_a = 10 \, \si{\kilo\hertz}$}
+\end{figure}
 
+Wird die Rechteckfolge aus 4.1. zur Abtastung verwendet, entsteht im Zeitbereich
+eine stückweise kontinurierliche Funktion (Abb.).
 
+Im Frequenzbereich entsteht die Faltung ähnlich wie bei der Abtastung mit dem
+Dirackamm, nur dass das Spektrum mit dem gefaltet wird das diskrete Spektrum aus
+Abb. 1 bzw. Abb. 2 ist.
+Die Verschiebungen des Eingangssignalspektrums entstehen daher immernoch zu $k
+\cdot 1/T_a$, die Wichtung der einzelnen Spektrallinien
+ist jedoch nicht mehr konstant, sondern folgt der einhüllenden Si-Funktion.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{1_2/1_2_Abtast_Rechteck_ZB}
+  \caption{Zwei Perioden des Eingangssignals abgetastet mit der periodischen
+    Rechteckfolge aus 4.1 ($T=1/8 \,\si{\milli\second}$)}
+\end{figure}
 
 \section{Versuchsaufgaben}
 
