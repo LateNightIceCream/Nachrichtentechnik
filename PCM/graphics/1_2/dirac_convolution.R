@@ -1,6 +1,6 @@
 library(ggplot2)
 
-outputName <- "1_2_dirac_convolution_FB_10kHz.pdf"
+outputName <- "1_2_dirac_convolution_8kHz.pdf"
 pdfWidth   <- 10
 pdfHeight  <- pdfWidth * 0.618
 
@@ -18,10 +18,25 @@ signal <- data.frame(f = signal_frequencies, a = signal_amplitudes)
 
 # number of diracs to display/2 (symmetrical around y axis)
 num_of_diracs <- 3
-sampling_frequency <- 10000
+sampling_frequency <- 8000
 
 dirac_frequencies <- c()
 dirac_amplitudes  <- c()
+
+# Si amplitudes
+#U2 <- 1
+#T  <- 1/sampling_frequency
+#tau <- 15 * 10^-6
+
+#amplitudes <- function(n) {
+
+#if(n == 0) { return( 2*U2 * tau/T ) }
+
+# p <- abs( 2*U2 * tau/T * sin(pi * n * tau/T) / (n * pi * tau/T))
+
+# print(p)
+
+#}
 
 for(i in (-num_of_diracs:num_of_diracs)) {
 
@@ -29,6 +44,7 @@ for(i in (-num_of_diracs:num_of_diracs)) {
 
 
     amp_value <- sampling_frequency
+#    amp_value  <- amplitudes(i)
     dirac_amplitudes  <- c(dirac_amplitudes, amp_value)
 
 }
@@ -61,10 +77,11 @@ hsBlue  <- "#00b1db"
 hsBlueA <- "#00b1db2F"
 
 xlabel <- "f / kHz"
-ylabel <- bquote("u"[2]~"(t) / V")
+ylabel <- bquote("U"[2]~"(f)")
 ybreaks <- seq(0, max(conv$a), sampling_frequency)
 
 ylabels <- c(0, bquote("1/T"[a]))
+#ylabels <- ybreaks
 
 xlimits <- c(min(conv$f), max(conv$f))
 xbreaks <- seq(min(min(dirac$f)), max(dirac$f), sampling_frequency)
