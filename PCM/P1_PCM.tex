@@ -172,11 +172,123 @@ Spektrums der Rechteckfolge.
 \section{Versuchsaufgaben}
 
 \subsection{}
-asd
-\subsection{}
-iii
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{2_1/osz_abtast}
+  \caption{Abtastsignal am Oszilloskop, Zeiteinstellung: $20 \, \si{\micro\second}/\textrm{div.}$}
+\end{figure}
+
+Aus der Oszilloskopmessung lässt sich eine Periodendauer von $T_a = 123 \, \si{\micro\second}$ und damit
+eine Frequenz von $f_a = 8.0775 \, \si{\kilo\hertz}$ sowie eine
+Impulsbreite von $\tau \approx 15.5 \, \si{\micro\second}$ ermitteln. Diese Werte
+stimmen in etwa mit den Vorgaben der Vorbereitungsaufgaben überein. Da die
+Impulsbreite leicht länger ist als die theoretische, ist eine Verschiebung der
+Nullstelle der Einhüllenden Si-Funktion im Spektrum nach links zu erwarten.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{2_1/osz_abtast_fft}
+  \caption{FFT des Abtastsignals}
+\end{figure}
+
+Der Frequenzabstand der Spektrallinien stimmt ebenfalls etwa mit dem
+theoretischen ( $8 \, \si{\kilo\hertz}$ ) überein. Die theoretische Nullstelle
+ist wie erwartet leicht verschoben.
 
 \subsection{}
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{2_2/2_2_ZB}
+  \caption{Abtastsignal (grün), Nachrichtensignal (gelb), und abgetastetes
+    Signal (Violett) am Oszilloskop}
+\end{figure}
+
+Aus Abbildung 11 lässt sich die Multiplikation von Abtast- und Nachrichtensignal
+erkennen. Bereits hier lässt sich eine zeitliche Verbreiterung der Impulse des
+abgetasteten Signals gegenüber dem Abtastsignal erkennen. 
+
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{2_2/2_2_Impulsvergleich}
+  \caption{Vergleich von Abtast- und Ausgangsimpulsen} 
+\end{figure}
+
+Bei genauerer Betrachtung erkennt man, dass die Impulsbreite des abgetasteten
+Signals etwa $20 \, \si{\percent}$ größer ist als die der Abtastimpulsfolge.
+Dies lässt sich auf die Trägheit des Systems zurückführen.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{2_2/2_2_spektrum}
+  \caption{FFT des PAM-Signals}
+\end{figure}
+
+Im Spektrum des Signals treten wie erwartet die Spektrallinien des Signals um
+die Abtastfrequenz auf. 
+Der Effekt der verringerten Impulsbreite spiegelt sich hier ebenfalls
+wider, da sich die Nullstelle nun zu einer geringeren Frequenz bewegt (ebenfalls
+ca. um $20 \, \si{\percent}$ verringert). 
+
+\subsection{}
+Die Quantisierungsstufenzahl $S$ errechnet sich bei einer Quantisierung mit $n$
+Bits nach
+\[ S = 2^n\]
+Bei $6$ Bits ergeben sich also $2^6=64$ mögliche Stufen. Bei linearer
+Quantisierung einer Spannung im Bereich $\pm 5 \, \si{\volt}$ erhält man einen
+Stufenabstand $s$ von
+\[ s = \frac{5 \, \si{\volt}}{32} =  156.25 \, \si{\milli\volt} \]
+wenn man das MSB als Vorzeichenbit verwendet.
+
+Durch Anlegen von Gleichspannungen und Ermittlung der Spannungswerte der
+D/A-gewandelten Bitfolgen lässt sich die Quantisierungskennlinie darstellen
+
+Quantisierungskennlinie hier einfügen (theor. und gemessen)
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{2_3/R/linquant_noc}
+  \caption{Aufgenommene Werte der Ausgangsspannung über der Eingangsspannung}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{2_3/R/linquant_c}
+  \caption{Aufgenommene Werte der Ausgangsspannung über der Eingangsspannung mit
+  theoretischer Quantisierungskennlinie}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{2_3/2_3_whatsmyvoltage}
+  \caption{Darstellung einiger kodierter Spannungswerte nach der Quantisierung
+    am Oszilloskop}
+\end{figure}
+
+Aus Abbildung 15 lassen sich die eingegangenen Spannungswerte über die
+gemessenen Bitfolgen
+ermitteln. Der etwas längere Synchronisierungsimpuls (links) bestimmt jeweils das Ende
+der Bitfolge aus 2 Kanälen, je $6$ Bits.
+Nimmt man an, dass das MSB bei einem HIGH-Pegel ein positives, bei LOW-Pegel als
+negatives Bit zu werten ist und dass der niedrigste Spannungswert
+($-5\,\si{\volt}$) durch die Nullfolge (000000) dargstellt wird, ergeben sich
+die folgenden eingangsseitigen Spannungswerte (als Intervall)
+
+\begin{enumerate}
+  \item[\textit{Oben:}]
+    \begin{enumerate}
+      Folge: 1 1 1 1 1 1\\
+      Stufenwert: $(+)2^4+2^3+2^2+2^1+2^0=31$\\
+      Spannungswert:  $31 \cdot s \, ... \, 32 \cdot s= +4.844 \,\si{\milli\volt}
+      ... +5\,\si{\volt}$ 
+    \end{enumerate}
+
+  \item[\textit{Mitte:}]
+    \begin{enumerate}
+      Folge: 1 0 0 0 1 1\\
+      Stufenwert: $(+)2^1+2^0 = 3$\\
+      Spannungswert: $ 3 \cdot s ... 4 \cdot s = +468.75\,\si{\milli\volt}...+625\,\si{\milli\volt}$
+    \end{enumerate}
+
+  \item[\textit{Unten:}]
+    \begin{enumerate}
+      Folge: 0 1 1 1 1 1\\
+      Stufenwert: $(-) 2^4+2^3+2^2+2^1+2^0 = (-)31$\\
+      Spannungswert: $-32\cdot s ... -31 \cdot s = -5 \,\si{\volt}...-4.844 \, \si{\volt}$
+    \end{enumerate}
+
+\end{enumerate}
 
 
 \end{document}
