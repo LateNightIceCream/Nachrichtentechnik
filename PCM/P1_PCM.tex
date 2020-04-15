@@ -238,7 +238,6 @@ wenn man das MSB als Vorzeichenbit verwendet.
 Durch Anlegen von Gleichspannungen und Ermittlung der Spannungswerte der
 D/A-gewandelten Bitfolgen lässt sich die Quantisierungskennlinie darstellen
 
-Quantisierungskennlinie hier einfügen (theor. und gemessen)
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{2_3/R/linquant_noc}
   \caption{Aufgenommene Werte der Ausgangsspannung über der Eingangsspannung}
@@ -256,11 +255,11 @@ Quantisierungskennlinie hier einfügen (theor. und gemessen)
     am Oszilloskop}
 \end{figure}
 
-Aus Abbildung 15 lassen sich die eingegangenen Spannungswerte über die
+Aus Abbildung 16 lassen sich die eingegangenen Spannungswerte über die
 gemessenen Bitfolgen
 ermitteln. Der etwas längere Synchronisierungsimpuls (links) bestimmt jeweils das Ende
 der Bitfolge aus 2 Kanälen, je $6$ Bits.
-Nimmt man an, dass das MSB bei einem HIGH-Pegel ein positives, bei LOW-Pegel als
+Nimmt man an, dass das MSB bei einem HIGH-Pegel als positives, bei LOW-Pegel als
 negatives Bit zu werten ist und dass der niedrigste Spannungswert
 ($-5\,\si{\volt}$) durch die Nullfolge (000000) dargstellt wird, ergeben sich
 die folgenden eingangsseitigen Spannungswerte (als Intervall)
@@ -285,10 +284,12 @@ die folgenden eingangsseitigen Spannungswerte (als Intervall)
     \begin{enumerate}
       Folge: 0 1 1 1 1 1\\
       Stufenwert: $(-) 2^4+2^3+2^2+2^1+2^0 = (-)31$\\
-      Spannungswert: $-32\cdot s ... -31 \cdot s = -5 \,\si{\volt}...-4.844 \, \si{\volt}$
+      Spannungswert: $-1\cdot s ... 0 \cdot s = -156.25 \,\si{\milli\volt}...0
+      \si{\volt}$ (000000 entspricht $-5 \,\si{\volt}$)
     \end{enumerate}
 
 \end{enumerate}
 
-
+%Bei der nichtlinearen Quantisierung ist die Stufung bei kleineren
+%Spannungswerten feiner.
 \end{document}
