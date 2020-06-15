@@ -1,4 +1,4 @@
-%%% SST LAB PROTOCOLL PREAMBLE
+%%% BuS LAB PROTOCOLL PREAMBLE
 %%% 2019
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -8,21 +8,32 @@
 
 \usepackage[ngerman]{babel}
 
-\usepackage[table,xcdraw]{xcolor}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{pgfplots}
+\usepackage{hyperref}
 \usepackage{tikz}
 \usepackage[many]{tcolorbox}
-\usepackage{graphicx}
+\usepackage{graphicx,import}
 \graphicspath{ {./graphics/} }
 \usepackage{pdfpages}
 \usepackage{dashrule}
 \usepackage{float}
 \usepackage{siunitx}
-\usepackage{trfsigns}
 \usepackage{booktabs}
-\usepackage[european]{circuitikz}
+\usepackage{transparent}
+\usepackage{svg}
+\usepackage[version=4]{mhchem}
+\usepackage[bottom]{footmisc}
+\usepackage[european, straightvoltages]{circuitikz}
+\usepackage{multicol}
+\usepackage{pstricks}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue5,
+    filecolor=pink4,      
+    urlcolor=blue5,
+}
 
 %%% DOCUMENT GEOMETRY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,7 +103,7 @@
 % box for notes
 \newcommand{\notebox}[1]{
 
-\tcbset{colback=white,colframe=red1!100!black,title=Note!,width=0.618\paperwidth,arc=0pt}
+\tcbset{colback=white,colframe=cyan5!100!black,title=Note!,width=0.618\paperwidth,arc=0pt}
 
  \begin{center}
   \begin{tcolorbox}[]
@@ -117,4 +128,8 @@
 	
 }
 
+\newcommand{\inklude}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./graphics/}{#1.pdf_tex}
+}
 % END OF PREAMBLE
